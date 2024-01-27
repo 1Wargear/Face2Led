@@ -8,7 +8,7 @@ class SoftwareMatrix:
         self.hight = h
         self.pixelSize = pix
         self.isRunning = True
-        self.gap = 2
+        self.gap = 1
 
         pygame.init()
         pygame.display.set_caption("Software LED-Matrix")
@@ -20,7 +20,7 @@ class SoftwareMatrix:
             for x in range(self.width):
                 targetX = x * self.pixelSize + (x+1) * self.gap
                 targetY = y * self.pixelSize + (y+1) * self.gap
-                color = frame[x][y]
+                color = frame[y][x]
                 pygame.draw.rect(self.screen, color, pygame.Rect(targetX , targetY, self.pixelSize, self.pixelSize))
 
         pygame.display.update()
