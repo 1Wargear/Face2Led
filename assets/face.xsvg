@@ -1,0 +1,18 @@
+<xsvg>
+   <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="25" fill="white" />
+      <circle cx="160" cy="40" r="25" fill="white" />
+      
+      <polygon points="$mountleft$ 100,90 $mountright$ 100,115" style="fill:white" />
+   </svg> 
+
+   <preset name="neutral">
+      <pos name="mountleft" value="20,100" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mountright" value="180,100" rangeX="-1,1" rangeY="-5,5" />
+   </preset>
+
+   <preset name="happy">
+      <pos name="mountleft" value="20,90" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mountright" value="180,90" rangeX="-1,1" rangeY="-5,5" />
+   </preset>
+</xsvg>
