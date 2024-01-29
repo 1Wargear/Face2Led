@@ -6,6 +6,11 @@
       <polygon points="$mountleft$ 100,90 $mountright$ 100,115" style="fill:white" />
    </svg> 
 
+   <defaults>
+      <pos name="mountleft" value="20,100" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mountright" value="180,100" rangeX="-1,1" rangeY="-5,5" />
+   </defaults>
+
    <preset name="neutral">
       <pos name="mountleft" value="20,100" rangeX="-1,1" rangeY="-5,5" />
       <pos name="mountright" value="180,100" rangeX="-1,1" rangeY="-5,5" />
