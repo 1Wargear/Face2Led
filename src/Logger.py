@@ -2,10 +2,10 @@ from enum import Enum
 import datetime as dt
 
 class LogLevel(Enum):
-    Trace = 0
-    Info = 1
-    Warning = 2
-    Error = 3
+    LL_Trace = 0
+    LL_Info = 1
+    LL_Warning = 2
+    LL_Error = 3
 
 class Logger:
     logs = []
@@ -20,3 +20,5 @@ class Logger:
         log = {"level": level, "time": dt.datetime, "message": message}
         print(log)
         self.logs.append(log)
+
+CurrentLogger = Logger(LogLevel.LL_Trace)

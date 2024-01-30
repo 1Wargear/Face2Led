@@ -1,9 +1,9 @@
 <xsvg>
    <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="25" fill="white" />
-      <circle cx="160" cy="40" r="25" fill="white" />
+      <circle cx="40" cy="40" r="25" fill="aqua" />
+      <circle cx="160" cy="40" r="25" fill="aqua" />
       
-      <polygon points="$mountleft$ 100,90 $mountright$ 100,115" style="fill:white" />
+      <polygon points="$mountleft$ 100,90 $mountright$ 100,115" style="fill:fuchsia" />
    </svg> 
 
    <defaults>
@@ -19,5 +19,10 @@
    <preset name="happy">
       <pos name="mountleft" value="20,90" rangeX="-1,1" rangeY="-5,5" />
       <pos name="mountright" value="180,90" rangeX="-1,1" rangeY="-5,5" />
+   </preset>
+
+   <preset name="sad">
+      <pos name="mountleft" value="20,115" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mountright" value="180,115" rangeX="-1,1" rangeY="-5,5" />
    </preset>
 </xsvg>
