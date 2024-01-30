@@ -1,41 +1,41 @@
 import numpy as np
-import PipelineStages
 from typing import Callable
+from Framework.PipelineStages import PipelineStage
 
 class Pipeline:
 
-    def __init__(self, stages: dict[PipelineStages.PipelineStage, list[Callable]]) -> None:
+    def __init__(self, stages: dict[PipelineStage, list[Callable]]) -> None:
         self.stages = stages
 
-    def Execute(self) -> np.ndarray:
+    def Execute(self, parameters: dict) -> np.ndarray:
 
         # Execute physical data gatering
-        physicalData = {}
-        for i in self.stages[PipelineStages.PipelineStage.PS_PhysicalData]:
-            k, v = i()
+        physicalData = parameters
+        for i in self.stages[PipelineStage.PS_PhysicalData]:
+            k, v = i(parameters)
             physicalData[k] = v
 
         # Execute Data analysis
-        analyticResults = {}
-        for i in self.stages[PipelineStages.PipelineStage.PS_DataAnalysing]:
+        analyticResults = parameters
+        for i in self.stages[PipelineStage.PS_DataAnalysing]:
             analyticResults = i(physicalData, analyticResults)
 
         # Execute Frame Composition
-        composition = {}
-        for i in self.stages[PipelineStages.PipelineStage.PS_FrameComposition]:
+        composition = parameters
+        for i in self.stages[PipelineStage.PS_FrameComposition]:
             composition = i(analyticResults, composition)
 
         # Execute Animatonstage
-        for i in self.stages[PipelineStages.PipelineStage.PS_Animation]:
+        for i in self.stages[PipelineStage.PS_Animation]:
             composition = i(composition)
         
         # Execute Renderstage
         frame = np.empty
-        for i in self.stages[PipelineStages.PipelineStage.PS_Rendering]:
+        for i in self.stages[PipelineStage.PS_Rendering]:
             frame = i(composition, frame)
         
         # Exeute Post processing stage
-        for i in self.stages[PipelineStages.PipelineStage.PS_PostProcessing]:
+        for i in self.stages[PipelineStage.PS_PostProcessing]:
             frame = i(frame)
 
         return frame

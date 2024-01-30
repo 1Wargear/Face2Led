@@ -1,6 +1,8 @@
 from enum import Enum
 
 class DataField(Enum):
-    Mouth_Left = 0
-    Mouth_Right = 1
-    Mouth_Middle = 2
+    DF_BaseImage = 0
+    DF_SVG = 1,
+    DF_VideoDevice = 2
+    DF_Empotion = 3
+    DF_TargetSize = 4

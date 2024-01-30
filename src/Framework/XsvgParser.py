@@ -73,8 +73,3 @@ class XsvgParser:
             presetValues[i.xpath('@name')[0]] = i.xpath('@value')[0]
 
         return presetValues
-
-
-xp = XsvgParser(open("./assets/face.xsvg").read())
-svg = xp.CompileSVG("neutral", None)
-print(svg)

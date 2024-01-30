@@ -1,6 +1,6 @@
-import cv2
-import Framework.InputTypes
+from Framework.InputTypes import InputType
+from Framework.DataFields import DataField
 
-def GetCameraImage():
-    image = cv2.VideoCapture(0).read()
-    return (Framework.InputTypes.InputType.IT_FaceCamRGB, image)
+def GetCameraImage(parameters):
+    ret, image = parameters[DataField.DF_VideoDevice].read()
+    return (InputType.IT_FaceCamRGB, image)
