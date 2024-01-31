@@ -15,8 +15,8 @@ class XsvgParser:
         vars = self.LoadPreset(preset)
 
         if overrides != None:
-            for vname, vval in overrides:
-                vars[vname] = self.ConstrainValue(preset, vname, "pos", vval)
+            for vname in overrides:
+                vars[vname] = self.ConstrainValue(preset, vname, "pos", overrides[vname])
 
         return self.ApplyVars(vars)
 
@@ -43,24 +43,27 @@ class XsvgParser:
         return appliedSVG
 
     def DefaultLookup(self, name: str):
-        return self.tree.xpath(f".//defaults/pos[@name=\"{name}\"]/@value")
+        return self.tree.xpath(f".//defaults/pos[@name=\"{name}\"]/@value")[0]
     
     def ConstrainValue(self, preset:str, name: str, type: str, value: str):
-        entry = self.tree.xpath(f".//preset[@name=\"{preset}\"]/{type}][@name=\"{name}\"]")
+        entry = self.tree.xpath(f".//preset[@name=\"{preset}\"]/{type}[@name=\"{name}\"]")[0]
 
         if entry == None:
-            entry = self.tree.xpath(f".//defaults/{type}][@name=\"{name}\"]")
+            entry = self.tree.xpath(f".//defaults/{type}][@name=\"{name}\"]")[0]
 
         if entry == None:
             return value
         
+        entryValue = entry.xpath("@value")[0]
+        
         match type:
             case "pos":
+                px, py = entryValue.split(',')
                 x,y = value.split(',')
-                xmin, xmax = entry.xpath("@rangeX").split(',')
-                ymin, ymax = entry.xpath("@rangeY").split(',')
-                x = np.clip(x, xmin, xmax)
-                y = np.clip(y, ymin, ymax)
+                xmin, xmax = entry.xpath("@rangeX")[0].split(',')
+                ymin, ymax = entry.xpath("@rangeY")[0].split(',')
+                x = int(np.clip(int(x), int(px) + int(xmin), int(px) + int(xmax)))
+                y = int(np.clip(int(y), int(py) + int(ymin), int(py) + int(ymax)))
                 return f"{x},{y}"
             case _:
                 return value
