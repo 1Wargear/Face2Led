@@ -7,3 +7,4 @@ class DataField(Enum):
     DF_Empotion = 3
     DF_TargetSize = 4
     DF_Overrides = 5
+    DF_Tick = 6

@@ -9,6 +9,7 @@ from Framework.Pipeline import Pipeline
 from Layer.CameraSensor import GetCameraImage
 from Layer.ExpressionDetection import DetectFaceExpression
 from Layer.ExpressionComposer import ComposeExpression
+from Layer.BlinkingAnimation import EyeBlinkingAnimation
 from Layer.ImageCompiler import CompileIMage
 from Layer.SVGRasteriser import RasterizeSVG
 
@@ -28,6 +29,7 @@ def main():
     builder.AddPhysicalSensor(GetCameraImage)
     builder.AddDataAnalyser(DetectFaceExpression)
     builder.AddFrameComposer(ComposeExpression)
+    builder.AddAnimationLayer(EyeBlinkingAnimation)
     builder.AddRenderingLayer(CompileIMage)
     builder.AddRenderingLayer(RasterizeSVG)
 

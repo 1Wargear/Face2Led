@@ -1,13 +1,17 @@
 import numpy as np
 from typing import Callable
+from Framework.DataFields import DataField
 from Framework.PipelineStages import PipelineStage
 
 class Pipeline:
 
     def __init__(self, stages: dict[PipelineStage, list[Callable]]) -> None:
         self.stages = stages
+        self.tick = 0
 
     def Execute(self, parameters: dict) -> np.ndarray:
+
+        parameters[DataField.DF_Tick] = self.tick
 
         # Execute physical data gatering
         physicalData = parameters
@@ -37,5 +41,7 @@ class Pipeline:
         # Exeute Post processing stage
         for i in self.stages[PipelineStage.PS_PostProcessing]:
             frame = i(frame)
+
+        self.tick += 1
 
         return frame

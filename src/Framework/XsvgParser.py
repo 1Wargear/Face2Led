@@ -12,6 +12,7 @@ class XsvgParser:
         self.svg = re.search(svgRE, xsvg).group(0)
 
     def CompileSVG(self, preset: str, overrides:dict):
+        print(preset)
         vars = self.LoadPreset(preset)
 
         if overrides != None:
@@ -46,10 +47,7 @@ class XsvgParser:
         return self.tree.xpath(f".//defaults/pos[@name=\"{name}\"]/@value")[0]
     
     def ConstrainValue(self, preset:str, name: str, type: str, value: str):
-        entry = self.tree.xpath(f".//preset[@name=\"{preset}\"]/{type}[@name=\"{name}\"]")[0]
-
-        if entry == None:
-            entry = self.tree.xpath(f".//defaults/{type}][@name=\"{name}\"]")[0]
+        entry = self.GetOverride(preset, name, type)
 
         if entry == None:
             return value
@@ -65,6 +63,31 @@ class XsvgParser:
                 x = int(np.clip(int(x), int(px) + int(xmin), int(px) + int(xmax)))
                 y = int(np.clip(int(y), int(py) + int(ymin), int(py) + int(ymax)))
                 return f"{x},{y}"
+            case _:
+                return value
+            
+    def GetOverride(self, preset:str, name:str, type:str):
+        entries = self.tree.xpath(f".//preset[@name=\"{preset}\"]/{type}[@name=\"{name}\"]")
+
+        entry = None
+        if 0 in entries:
+            entry = entries[0]
+
+        if entry == None:
+            entry = self.tree.xpath(f".//defaults/{type}[@name=\"{name}\"]")[0]
+
+        return entry
+
+    def MoveValueInRange(self, preset:etree._Element, value):
+        match preset.tag:
+            case "pos":
+                vx, vy = value.split(',')
+                px, py = preset.xpath("@value")[0].split(',')
+                xmin, xmax = preset.xpath("@rangeX")[0].split(',')
+                ymin, ymax = preset.xpath("@rangeY")[0].split(',')
+                nx = int(((float(xmax) - float(xmin)) * (float(vx) + 1 / 2)) + float(xmin))
+                ny = int(((float(ymax) - float(ymin)) * (float(vy) + 1 / 2)) + float(ymin))
+                return f"{int(px) + nx},{int(py) + ny}"
             case _:
                 return value
 
