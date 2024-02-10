@@ -3,7 +3,7 @@ from Framework.InputTypes import InputType
 from Framework.DataFields import DataField
 
 def DetectFaceExpression(data, analytics):
-    analytics[DataField.DF_Empotion] = detectExpression(data)
+    analytics[DataField.DF_Empotion] =  detectExpression(data)
     return analytics
 
 def detectExpression(data):

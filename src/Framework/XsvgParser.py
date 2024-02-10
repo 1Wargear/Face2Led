@@ -12,7 +12,6 @@ class XsvgParser:
         self.svg = re.search(svgRE, xsvg).group(0)
 
     def CompileSVG(self, preset: str, overrides:dict):
-        print(preset)
         vars = self.LoadPreset(preset)
 
         if overrides != None:
@@ -70,7 +69,7 @@ class XsvgParser:
         entries = self.tree.xpath(f".//preset[@name=\"{preset}\"]/{type}[@name=\"{name}\"]")
 
         entry = None
-        if 0 in entries:
+        if entries:
             entry = entries[0]
 
         if entry == None:

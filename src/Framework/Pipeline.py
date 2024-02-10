@@ -1,6 +1,7 @@
 import numpy as np
 from typing import Callable
 from Framework.DataFields import DataField
+from Framework.InputTypes import InputType
 from Framework.PipelineStages import PipelineStage
 
 class Pipeline:
@@ -23,6 +24,11 @@ class Pipeline:
         analyticResults = parameters
         for i in self.stages[PipelineStage.PS_DataAnalysing]:
             analyticResults = i(physicalData, analyticResults)
+
+        if InputType.IT_UserOverride in parameters and DataField.DF_Empotion in parameters[InputType.IT_UserOverride]:
+            analyticResults[DataField.DF_Empotion] = parameters[InputType.IT_UserOverride][DataField.DF_Empotion]
+
+        print(analyticResults[DataField.DF_Empotion])
 
         # Execute Frame Composition
         composition = parameters
