@@ -1,41 +1,99 @@
 <xsvg>
-   <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="25" fill="aqua" />
-      <circle cx="160" cy="40" r="25" fill="aqua" />
-      <polygon points="15,10 65,10 $lefteyelidright$  $lefteyelidleft$" style="fill:back" />
-      <polygon points="135,10 185,10 $righteyelidright$ $righteyelidleft$" style="fill:black" />
-      
-      <polygon points="$mountleft$ $mounttop$ $mountright$ 100,115" style="fill:fuchsia" />
-   </svg> 
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  	<defs>
+    	<radialGradient id="faceGrad">
+      		<stop offset="0%" stop-color="#ffc72a" />
+            <stop offset="90%" stop-color="#ffc72a" />
+      		<stop offset="100%" stop-color="#e19566" />
+    	</radialGradient>
+    	<radialGradient id="eyeGrad">
+      		<stop offset="0%" stop-color="black" />
+            <stop offset="40%" stop-color="yellow" />
+            <stop offset="40%" stop-color="white" />
+            <stop offset="90%" stop-color="white" />
+      		<stop offset="100%" stop-color="black" />
+    	</radialGradient>
+    	<linearGradient id="mouthGrad" x1="0" x2="0" y1="0" y2="1">
+      		<stop offset="0%" stop-color="#b0722a" />
+            <stop offset="25%" stop-color="#6b451a" />
+      		<stop offset="50%" stop-color="#291b0a" />
+            <stop offset="75%" stop-color="#774d1d" />
+      		<stop offset="100%" stop-color="#b0722a" />
+    	</linearGradient>
+  	</defs>
+  
+  	<circle cx="100" cy="100" r="100" fill="url(#faceGrad)"/>
+    
+    <circle cx="55" cy="65" r="25" fill="url(#eyeGrad)" />
+    <polygon points="30,30 80,30 $lefteyelidleft$ $lefteyelidright$" style="fill:#ffc72a" />
+        
+    <circle cx="145" cy="65" r="25" fill="url(#eyeGrad)" />
+    <polygon points="120,30 170,30 $righteyelidleft$ $righteyelidright$" style="fill:#ffc72a" />
 
-   <defaults>
-      <pos name="mountleft" value="20,100" rangeX="-1,1" rangeY="-5,5" />
-      <pos name="mountright" value="180,100" rangeX="-1,1" rangeY="-5,5" />
-      <pos name="mounttop" value="100,90" rangeX="0,0" rangeY="-10,10" />
+    <polygon points="$mouthleft$ $mouthlefttop$ $mouthtop$ $mouthrighttop$ $mouthright$ $mouthrightbottum$ $mouthbottum$ $mouthbottumleft$" style="fill:url(#mouthGrad)" />
+  </svg>
 
-      <pos name="lefteyelidleft" value="15, 20" rangeX="0,0" rangeY="0,5" />
-      <pos name="lefteyelidright" value="65,20" rangeX="0,0" rangeY="0,5" />
+  <defaults>
+      <pos name="mouthleft" value="20,140" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthlefttop" value="70,135" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthtop" value="100,135" rangeX="0,0" rangeY="-10,10" />
+      <pos name="mouthrighttop" value="130,135" rangeX="-1,1" rangeY="-5,5" />
 
-      <pos name="righteyelidleft" value="135, 20" rangeX="0,0" rangeY="0,5" />
-      <pos name="righteyelidright" value="185,20" rangeX="0,0" rangeY="0,5" />
-   </defaults>
+      <pos name="mouthright" value="180,140" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthrightbottum" value="135,145" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthbottum" value="100,145" rangeX="0,0" rangeY="-10,10" />
+      <pos name="mouthbottumleft" value="70,145" rangeX="0,0" rangeY="-10,10" />
 
-   <preset name="neutral">
-      <pos name="mountleft" value="20,100" rangeX="-1,1" rangeY="-5,5" />
-      <pos name="mountright" value="180,100" rangeX="-1,1" rangeY="-5,5" />
-   </preset>
+      <pos name="lefteyelidleft" value="80,40" rangeX="0,0" rangeY="0,0" />
+      <pos name="lefteyelidright" value="30,40" rangeX="0,0" rangeY="0,0" />
 
-   <preset name="happy">
-      <pos name="mountleft" value="20,90" rangeX="-1,1" rangeY="-5,5" />
-      <pos name="mountright" value="180,90" rangeX="-1,1" rangeY="-5,5" />
-   </preset>
+      <pos name="righteyelidleft" value="170,40" rangeX="0,0" rangeY="0,0" />
+      <pos name="righteyelidright" value="120,40" rangeX="0,0" rangeY="0,0" />
+  </defaults>
 
-   <preset name="sad">
-      <pos name="mountleft" value="20,115" rangeX="-1,1" rangeY="-5,5" />
-      <pos name="mountright" value="180,115" rangeX="-1,1" rangeY="-5,5" />
-   </preset>
+  <preset name="neutral">
+      <pos name="lefteyelidleft" value="80,40" rangeX="0,0" rangeY="0,10" />
+      <pos name="lefteyelidright" value="30,40" rangeX="0,0" rangeY="0,10" />
 
-   <preset name="angry">
-      <pos name="mounttop" value="100,70" rangeX="0,0" rangeY="-10,10" />
-   </preset>
+      <pos name="righteyelidleft" value="170,40" rangeX="0,0" rangeY="0,10" />
+      <pos name="righteyelidright" value="120,40" rangeX="0,0" rangeY="0,10" />
+  </preset>
+
+  <preset name="happy">
+      <pos name="mouthleft" value="20,120" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthlefttop" value="70,130" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthtop" value="100,135" rangeX="0,0" rangeY="-10,10" />
+      <pos name="mouthrighttop" value="130,130" rangeX="-1,1" rangeY="-5,5" />
+
+      <pos name="mouthright" value="180,120" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthrightbottum" value="135,140" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthbottum" value="100,145" rangeX="0,0" rangeY="-10,10" />
+      <pos name="mouthbottumleft" value="70,140" rangeX="0,0" rangeY="-10,10" />
+  </preset>
+
+  <preset name="sad">
+      <pos name="mouthleft" value="20,160" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthlefttop" value="70,140" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthtop" value="100,135" rangeX="0,0" rangeY="-10,10" />
+      <pos name="mouthrighttop" value="130,140" rangeX="-1,1" rangeY="-5,5" />
+
+      <pos name="mouthright" value="180,160" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthrightbottum" value="135,150" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mouthbottum" value="100,145" rangeX="0,0" rangeY="-10,10" />
+      <pos name="mouthbottumleft" value="70,150" rangeX="0,0" rangeY="-10,10" />
+
+      <pos name="lefteyelidleft" value="80,45" rangeX="0,0" rangeY="0,0" />
+      <pos name="lefteyelidright" value="30,55" rangeX="0,0" rangeY="0,0" />
+
+      <pos name="righteyelidleft" value="170,55" rangeX="0,0" rangeY="0,0" />
+      <pos name="righteyelidright" value="120,45" rangeX="0,0" rangeY="0,00" />
+  </preset>
+
+  <preset name="angry">
+    <pos name="lefteyelidleft" value="80,55" rangeX="0,0" rangeY="0,0" />
+      <pos name="lefteyelidright" value="30,45" rangeX="0,0" rangeY="0,0" />
+
+      <pos name="righteyelidleft" value="170,45" rangeX="0,0" rangeY="0,0" />
+      <pos name="righteyelidright" value="120,55" rangeX="0,0" rangeY="0,00" />
+  </preset>
 </xsvg>

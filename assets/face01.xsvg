@@ -1,0 +1,51 @@
+<xsvg>
+   <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="25" fill="aqua" />
+      <circle cx="160" cy="40" r="25" fill="aqua" />
+      <polygon points="15,10 65,10 $lefteyelidright$  $lefteyelidleft$" style="fill:back" />
+      <polygon points="135,10 185,10 $righteyelidright$ $righteyelidleft$" style="fill:black" />
+      
+      <polygon points="$mountleft$ $mounttop$ $mountright$ 100,115" style="fill:fuchsia" />
+   </svg> 
+
+   <defaults>
+      <pos name="mountleft" value="20,100" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mountright" value="180,100" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mounttop" value="100,90" rangeX="0,0" rangeY="-10,10" />
+
+      <pos name="lefteyelidleft" value="15,20" rangeX="0,0" rangeY="0,5" />
+      <pos name="lefteyelidright" value="65,20" rangeX="0,0" rangeY="0,5" />
+
+      <pos name="righteyelidleft" value="135, 20" rangeX="0,0" rangeY="0,5" />
+      <pos name="righteyelidright" value="185,20" rangeX="0,0" rangeY="0,5" />
+   </defaults>
+
+   <preset name="neutral">
+      <pos name="mountleft" value="20,100" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mountright" value="180,100" rangeX="-1,1" rangeY="-5,5" />
+   </preset>
+
+   <preset name="happy">
+      <pos name="mountleft" value="20,90" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mountright" value="180,90" rangeX="-1,1" rangeY="-5,5" />
+   </preset>
+
+   <preset name="sad">
+      <pos name="mountleft" value="20,115" rangeX="-1,1" rangeY="-5,5" />
+      <pos name="mountright" value="180,115" rangeX="-1,1" rangeY="-5,5" />
+
+      <pos name="lefteyelidright" value="65,20" rangeX="0,0" rangeY="0,0" />
+      <pos name="righteyelidleft" value="135,20" rangeX="0,0" rangeY="0,0" />
+      
+      <pos name="righteyelidright" value="185,40" rangeX="0,0" rangeY="0,0" />
+      <pos name="lefteyelidleft" value="15,40" rangeX="0,0" rangeY="0,0" />
+   </preset>
+
+   <preset name="angry">
+      <pos name="lefteyelidright" value="65,40" rangeX="0,0" rangeY="0,0" />
+      <pos name="righteyelidleft" value="135,40" rangeX="0,0" rangeY="0,0" />
+      
+      <pos name="righteyelidright" value="185,20" rangeX="0,0" rangeY="0,0" />
+      <pos name="lefteyelidleft" value="15,20" rangeX="0,0" rangeY="0,0" />
+   </preset>
+</xsvg>
