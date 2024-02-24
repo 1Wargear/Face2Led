@@ -11,6 +11,7 @@ class Pipeline:
         self.tick = 0
 
     def Execute(self, parameters: dict) -> np.ndarray:
+        """ Executes one pass of the Pipeline and returns the Rastergraphic """
 
         parameters[DataField.DF_Tick] = self.tick
 

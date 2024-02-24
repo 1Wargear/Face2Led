@@ -1,6 +1,7 @@
 from lxml import etree
 import re
 import numpy as np
+import logging
 
 class XsvgParser:
 
@@ -12,6 +13,8 @@ class XsvgParser:
         self.svg = re.search(svgRE, xsvg).group(0)
 
     def CompileSVG(self, preset: str, overrides:dict):
+        """ Compiles a SVG file from a preset and overrides and returns the ready to use SVG string """
+
         vars = self.LoadPreset(preset)
 
         if overrides != None:
@@ -21,6 +24,8 @@ class XsvgParser:
         return self.ApplyVars(vars)
 
     def ApplyVars(self, overrides:dict) -> str:
+        """ Applies the overrides to the SVG and returns the new SVG-String ready to use """
+
         appliedSVG = self.svg
         varRE = re.compile("\$.*?\$")
 
@@ -34,8 +39,7 @@ class XsvgParser:
                 vval = self.DefaultLookup(vname)
 
             if vval == None:
-                # Logger.CurrentLogger.WriteLog(Logger.LogLevel.LL_Error, "Missing Variable")
-                print("Fuckup")
+                logging.warn("Missing Variable")
                 return None
             
             appliedSVG = appliedSVG.replace(match, vval)
@@ -43,9 +47,13 @@ class XsvgParser:
         return appliedSVG
 
     def DefaultLookup(self, name: str):
+        """ looks up the default value for a variable """
+
         return self.tree.xpath(f".//defaults/pos[@name=\"{name}\"]/@value")[0]
     
     def ConstrainValue(self, preset:str, name: str, type: str, value: str):
+        """ Clams a value in the range of the variable for the preset """
+
         entry = self.GetOverride(preset, name, type)
 
         if entry == None:
@@ -66,6 +74,8 @@ class XsvgParser:
                 return value
             
     def GetOverride(self, preset:str, name:str, type:str):
+        """ Gets the Variable entry for the preset. If none exists it returns the variable entry from the defaults """
+
         entries = self.tree.xpath(f".//preset[@name=\"{preset}\"]/{type}[@name=\"{name}\"]")
 
         entry = None
@@ -78,6 +88,7 @@ class XsvgParser:
         return entry
 
     def MoveValueInRange(self, preset:etree._Element, value):
+        """ Modifies the output Value to lie in the allowed range by a percentage given by the value whitch is between -1 and 1 """
         match preset.tag:
             case "pos":
                 vx, vy = value.split(',')
@@ -91,6 +102,8 @@ class XsvgParser:
                 return value
 
     def LoadPreset(self, name: str):
+        """ Creates a dictionary with all overrides from a given preset """
+
         presetValues = {}
         preset = self.tree.xpath(f".//preset[@name=\"{name}\"]/*")
 

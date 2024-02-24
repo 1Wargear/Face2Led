@@ -8,5 +8,5 @@ def DetectFaceExpression(data, analytics):
 
 def detectExpression(data):
     image = data[InputType.IT_FaceCamRGB]
-    result = DeepFace.analyze(image, ("emotion"), False)
+    result =   DeepFace.analyze(image, ("emotion"), False)
     return result[0]["dominant_emotion"]

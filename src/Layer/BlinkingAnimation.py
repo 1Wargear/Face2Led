@@ -3,7 +3,7 @@ import datetime
 from Framework.DataFields import DataField
 from Framework.XsvgParser import XsvgParser
 
-def animateEyeBlink(params, xsvg, name, animValue):
+def animateEyeBlink(params, xsvg:XsvgParser, name, animValue):
     rightlidEntry = xsvg.GetOverride(params[DataField.DF_Empotion], name, "pos")
     rightidNew = xsvg.MoveValueInRange(rightlidEntry, animValue)
     params[DataField.DF_Overrides][name] = rightidNew
